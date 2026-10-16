@@ -11,8 +11,13 @@ Project instructions and user authorization take precedence over this generic ki
 - Define observable acceptance and a small task list. Delegate substantial independent
   work to relevant team_* roles with objective, acceptance, checkout, exclusive writable
   files, dependencies and required checks. Use only useful specialists, not every role.
-  The coordinator normally owns PO and Lead; delegated PO/Lead return bounded findings.
-- Designer precedes visual implementation. Developer owns product code. QA reviews the
+  The main session owns PO scope, Lead planning, integration and short research.
+  Do not spawn PO, Lead, frontend, backend, infrastructure or researcher roles.
+  Use team_developer for implementation, team_qa for independent acceptance and
+  team_designer only for substantive UX/visual work. Small changes can be done
+  directly; never start every role by default. Multiple team_developer instances
+  may handle independent areas with exclusive files and an agreed API contract.
+- For substantial visual redesign, optional Designer precedes implementation. Developer owns product code. QA reviews the
   integrated result independently and updates/runs relevant tests. API changes require
   an agreed contract before independent frontend/backend work. One writer per file.
 - All roles use gpt-6-luna / low by default. Never silently escalate to a costlier model.

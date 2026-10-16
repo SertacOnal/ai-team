@@ -24,10 +24,17 @@ değiştirmez. Var olan config korunur; roller GPT-6 Luna / low kullanır.
 
 ## Takım
 
-Ana agent PO + Lead koordinasyonunu üstlenir. Gerektikçe `team_po`, `team_lead`,
-`team_designer`, `team_developer`, `team_frontend`, `team_backend`, `team_qa`,
-`team_infrastructure`, `team_researcher` rollerini kullanır. Bütün rolleri her işte
-başlatmaz. QA bağımsız gerçek test kanıtı üretir. Ücretli modele sessiz geçiş yoktur.
+Ana Codex oturumu PO + Lead koordinasyonu, kapsam, entegrasyon ve kısa araştırmayı
+üstlenir. Ayrı koordinatör agent başlatılmaz. Üç rol vardır:
+
+- `team_developer`: frontend, backend, mobil ve geliştirme altyapısı.
+- `team_qa`: bağımsız kabul, test ve Playwright doğrulaması.
+- `team_designer`: yalnız anlamlı UI/UX veya görsel tasarım ihtiyacında.
+
+Varsayılan: ana oturum → Developer → QA. Görsel yeniden tasarımda araya Designer
+girer. Küçük işler ana oturumda yapılabilir; her görevde bütün roller çalıştırılmaz.
+Bağımsız alanlarda aynı Developer rolünün birden fazla örneği çalışabilir;
+dosya sahipliği ve API sözleşmesi önceden belirlenir. Tüm roller Luna/low kullanır.
 
 ## M4 → M1 → M4
 
@@ -50,7 +57,8 @@ Agent kodu yorumlayarak devam eder; aynı sohbet oturumunun taşınması gerekme
 
 Kurulum `.codex/agents/team_*.toml`, `.ai-team/AGENTS.md` ve AGENTS.md içinde
 ayrı bir blok ekler. Mevcut proje kuralları, roller ve kullanıcı değişiklikleri
-korunur; dosya çatışmasında durur. `.ai/project.json` ve `.ai/handoff.md` yalnız
+korunur; dosya çatışmasında durur. Önceden kurulan emekli team_* rolleri yalnız
+kurulum kaydındaki hash ile eşleşiyorsa kaldırılır; yerel düzenleme varsa durulur. `.ai/project.json` ve `.ai/handoff.md` yalnız
 ilk seferde oluşturulur. Bu dosyaları gözden geçirip proje reposuna commit edin;
 sonraki makine repo üzerinden alır. Güncelleme için ai-team'i pull edip install'ı
 tekrar çalıştırın. Global ayar kurulmaz, otomatik fetch/push yapılmaz.

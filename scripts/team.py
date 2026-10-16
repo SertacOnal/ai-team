@@ -9,7 +9,7 @@ BLOCK=START+'\nRead [.ai-team/AGENTS.md](.ai-team/AGENTS.md) and use relevant te
 def digest(b):return hashlib.sha256(b).hexdigest()
 def validate():
     roles=list((ROOT/'.codex/agents').glob('team_*.toml'))
-    if len(roles)!=9:raise ValueError('Expected nine team roles')
+    if {p.stem for p in roles}!={'team_developer','team_qa','team_designer'}:raise ValueError('Expected Developer, QA and Designer roles only')
     for p in roles:
         d=tomllib.loads(p.read_text())
         if d.get('name')!=p.stem or d.get('model')!='gpt-6-luna' or d.get('model_reasoning_effort')!='low' or not d.get('developer_instructions'):raise ValueError('Invalid role '+p.name)
@@ -35,6 +35,12 @@ def install(target,apply=False):
         p=target/rel
         if any(x.is_symlink() for x in [p,*p.parents] if x!=target.parent):raise ValueError('Symlink destination refused')
         if p.exists() and p.read_bytes()!=data and digest(p.read_bytes())!=previous.get(rel):raise ValueError('Preserve local edits; reconcile '+rel)
+    retired={'.codex/agents/team_'+name+'.toml' for name in ('po','lead','frontend','backend','infrastructure','researcher')}
+    stale=set(previous)&retired
+    for rel in stale:
+        p=target/rel
+        if any(x.is_symlink() for x in [p,*p.parents] if x!=target.parent):raise ValueError('Symlink retired role refused')
+        if p.exists() and digest(p.read_bytes())!=previous[rel]:raise ValueError('Preserve edited retired role; reconcile '+rel)
     agents=target/'AGENTS.md'
     if agents.is_symlink():raise ValueError('Symlink AGENTS refused')
     text=agents.read_text() if agents.exists() else ''
@@ -46,13 +52,15 @@ def install(target,apply=False):
     if not apply:return
     for rel,data in files.items():
         p=target/rel;p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(data)
+    for rel in stale:
+        (target/rel).unlink(missing_ok=True)
     agents.write_text(text)
-    owned={**previous,**{r:digest(b) for r,b in files.items()}}
+    owned={**{r:h for r,h in previous.items() if r not in stale},**{r:digest(b) for r,b in files.items()}}
     state.write_text(json.dumps({'version':1,'files':owned},indent=2)+'\n')
 
 def main():
     p=argparse.ArgumentParser();sub=p.add_subparsers(dest='command',required=True);sub.add_parser('validate');i=sub.add_parser('install');i.add_argument('--target',required=True);i.add_argument('--apply',action='store_true');a=p.parse_args()
-    if a.command=='validate':validate();print('PASS: nine roles, config and environment template')
+    if a.command=='validate':validate();print('PASS: three roles, config and environment template')
     else:install(a.target,a.apply)
 if __name__=='__main__':
     try:main()

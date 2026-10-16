@@ -1,8 +1,9 @@
 # GitHub connector delivery
 
 Own the request as a single coordinator: PO scope and observable acceptance,
-Designer when visual work is needed, Lead refinement and dependencies, developers
-for implementation, independent QA for actual behavior evidence. Stakeholder
+Lead refinement and dependencies in the main session, team_developer for
+implementation, team_qa for independent acceptance and optional team_designer
+for substantive visual work. Do not start separate PO/Lead/researcher agents. Stakeholder
 review is the final product checkpoint, not an approval for every role handoff.
 
 Use the runner's trusted target/workspace assignment. Read existing-project rules and delegate using the installed team_* roles.
