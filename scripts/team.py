@@ -38,7 +38,7 @@ def install(target,apply=False):
     agents=target/'AGENTS.md'
     if agents.is_symlink():raise ValueError('Symlink AGENTS refused')
     text=agents.read_text() if agents.exists() else ''
-    if text.count(START)!=text.count(END) or text.count(START)>1:raise ValueError('Malformed managed block')
+    if text.count(START)!=text.count(END) or text.count(START)>1 or (START in text and text.index(END)<text.index(START)):raise ValueError('Malformed managed block')
     if START in text:
         a=text.index(START);b=text.index(END)+len(END);text=text[:a]+BLOCK+text[b:]
     else:text=text.rstrip()+'\n\n'+BLOCK+'\n'

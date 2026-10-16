@@ -14,3 +14,9 @@ class Team(unittest.TestCase):
    p=Path(t);subprocess.run(['git','init',t],check=True,capture_output=True);m.install(p,True);role=p/'.codex/agents/team_qa.toml';role.write_text('local changes')
    with self.assertRaises(ValueError):m.install(p,True)
    self.assertEqual(role.read_text(),'local changes')
+
+ def test_reversed_markers_preserved(self):
+  with tempfile.TemporaryDirectory() as t:
+   p=Path(t);subprocess.run(['git','init',t],check=True,capture_output=True);text=m.END+'\nUser rules\n'+m.START;(p/'AGENTS.md').write_text(text)
+   with self.assertRaises(ValueError):m.install(p,True)
+   self.assertEqual((p/'AGENTS.md').read_text(),text)
