@@ -56,8 +56,8 @@ sonraki makine repo üzerinden alır. Güncelleme için ai-team'i pull edip inst
 tekrar çalıştırın. Global ayar kurulmaz, otomatik fetch/push yapılmaz.
 
 Pnlcal, AI Lab runner, dashboard ve makineye özel servisler ayrı kalır. Bu repo
-yeni task tracker/webhook/scheduler kurmaz. Mevcut M1 runner henüz ai-team'e
-geçirilmedi; bu talep taşınabilir takım reposunun başlangıcıdır.
+yeni task tracker/webhook/scheduler kurmaz. M1 üzerindeki ai-lab-tasks connector bu repodaki rolleri kurar; GitHub teslim
+ve QA devir davranışı workflows/github-connector.md içinde tek kaynaktır.
 
 ## Kontrol
 

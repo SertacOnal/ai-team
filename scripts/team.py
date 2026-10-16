@@ -23,7 +23,7 @@ def install(target,apply=False):
     config=target/'.codex/config.toml'
     if config.exists() and tomllib.loads(config.read_text()).get('agents',{}).get('enabled') is False:
         raise ValueError('Target disables agents; preserve config and resolve explicitly')
-    files={'.ai-team/AGENTS.md':(ROOT/'AGENTS.md').read_bytes()}
+    files={'.ai-team/AGENTS.md':(ROOT/'AGENTS.md').read_bytes(), '.ai-team/workflows/github-connector.md':(ROOT/'workflows/github-connector.md').read_bytes()}
     for p in validate():files['.codex/agents/'+p.name]=p.read_bytes()
     if not (target/'.codex/config.toml').exists():files['.codex/config.toml']=(ROOT/'.codex/config.toml').read_bytes()
     for name in ('project.json','handoff.md'):
