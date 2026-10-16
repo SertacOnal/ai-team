@@ -1,0 +1,13 @@
+{
+  "name": "replace-with-project-name",
+  "runtime": {"node": "project-specific", "python": "project-specific"},
+  "commands": {
+    "setup": {"cwd": ".", "argv": ["echo", "Define project setup"]},
+    "start": {"cwd": ".", "argv": ["echo", "Define project startup"]},
+    "test": {"cwd": ".", "argv": ["echo", "Define meaningful tests"]},
+    "browser": {"cwd": ".", "argv": ["echo", "Define Playwright command for web UI"]}
+  },
+  "services": [],
+  "environment": {"example": ".env.example", "notes": "Configure secrets locally; never commit values."},
+  "acceptance_notes": "Template only. Echo placeholders are not verification. Replace before running work."
+}
