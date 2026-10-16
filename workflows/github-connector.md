@@ -1,13 +1,13 @@
 # GitHub connector delivery
 
 Own the request as a single coordinator: PO scope and observable acceptance,
-Lead refinement and dependencies in the main session, team_developer for
-implementation, team_qa for independent acceptance and optional team_designer
+Lead refinement and dependencies in the main session, developer for
+implementation, qa for independent acceptance and optional designer
 for substantive visual work. Do not start separate PO/Lead/researcher agents. Stakeholder
 review is the final product checkpoint, not an approval for every role handoff.
 
-Use the runner's trusted target/workspace assignment. Read existing-project rules and delegate using the installed team_* roles.
-For connector assignments, legacy pnl_* and lab_* roles are superseded by team_*;
+Use the runner's trusted target/workspace assignment. Read existing-project rules and delegate using the project-owned .codex/agents roles.
+For connector assignments, legacy pnl_*, lab_* and team_* roles are superseded by project roles;
 legacy project knowledge remains context only. For new work,
 use appropriate general specialists without imposing Pnlcal financial rules.
 Research returns source-backed findings. Plan-only requests do not edit products.
