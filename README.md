@@ -1,54 +1,89 @@
-# AI Team — shared framework
+# AI Team — Generic Agent Framework
 
-Ortak ilkeler ve teslim akışı. **Bu repo agent rolü tanımlamaz.** Karpathy-inspired
-kodlama disiplini principles.md içinde; kaynağı ve uyarlama notu aynı dosyadadır.
-Yeni bir model, knowledge base veya kendi kendini güncelleyen sistem değildir.
+Karpathy-inspired coding principles ve reusable agent templates. Bu repo **proje-specific agent tanımlamaz**, sadece generic tanımlar ve ilkeler içerir.
 
-## Kullanım (Python 3.11+)
+## Felsefe
 
-```sh
-git clone git@github.com:SertacOnal/ai-team.git
-cd ai-team
-python3 scripts/team.py validate
-python3 scripts/team.py install --target /absolute/path/to/project
-python3 scripts/team.py install --target /absolute/path/to/project --apply
+Bu framework Andrej Karpathy'nin kodlama disiplininden esinlenmiştir:
+- **Düşün, sonra kodla**: Önce analiz, sonra implementasyon
+- **Basitlik**: Mevcut konvansiyonlarla çöz, gereksiz soyutlamalardan kaçın
+- **Cerrahi değişiklik**: Sadece ilgili dosyalara dokun
+- **Hedefe odaklan**: Gözlemlenebilir başarı kriterleri belirle
+
+Kaynak: [Karpathy Skills](https://github.com/multica-ai/andrej-karpathy-skills)
+
+## Yapı
+
+```
+ai-team/
+├── principles.md           # Temel kodlama ilkeleri
+├── opencode/               # OpenCode generic agent templates
+│   ├── opencode.jsonc      # Base configuration
+│   └── agents/             # Reusable agent definitions
+├── templates/              # Project templates
+│   ├── handoff.md          # Session handoff template
+│   └── project.json        # Project config template
+├── workflows/              # Workflow documentation
+└── scripts/                # Utility scripts
 ```
 
-Installer `.ai-framework/principles.md` ve GitHub akışını projeye kopyalar;
-AGENTS.md girişini ekler. `.ai/project.json` ve `.ai/handoff.md` yalnız yoksa
-oluşturulur. Ortam şablonundaki echo komutları yer tutucudur, doğrulama değildir.
-`.codex/agents/` içindeki Developer/QA/Designer tanımları **projenin kendi
-sorumluluğudur**; installer bunları oluşturmaz veya güncellemez. Küçük yeni PoC
-ayrı role ihtiyaç duymadan ana oturumda çalışabilir.
+## Kullanım
 
-Ana oturum kapsam, planlama, entegrasyon ve kısa araştırmayı üstlenir. Gerektiğinde
-proje Developer rolünü, bağımsız QA'yı ve isteğe bağlı Designer'ı görevlendirir.
-Ortak ilkeleri rol dosyalarına kopyalamayın; `.ai-framework/principles.md` referansı
-kullanın. Proje rolleri yalnız kendi uzmanlık ve kabul gereksinimlerini tanımlar.
+### Yeni Projeye Kurulum
 
-## M4 ↔ M1
+1. Projenin root'una `.opencode/` klasörü oluştur
+2. `ai-team/opencode/` içeriğini kopyala veya referans al
+3. Proje-specific agentları `.opencode/agents/` altına ekle
+4. `AGENTS.md` dosyasını projeye uyarla
 
-Kod, proje rolleri, .ai-framework kopyası ve handoff kaydı aynı proje branch'inde
-commit/push edilir. Diğer makine temiz checkout'ta fetch ve pull --ff-only yapar
-veya ayrı worktree açar; aynı branch'in diğer yazarı önce durur. Secret, ignored
-veri, çalışan servis ve sohbet geçmişi Git ile taşınmaz. Ortamı .ai/project.json
-göre yeniden kurun; kayıtları güncel kodla doğrulayın.
+### OpenCode Hierarchy
 
-Codex'e: “AGENTS.md ve .ai/handoff.md dosyalarını oku; branch ve ortamı doğrulayıp
-devam et” deyin. Kullanıcı yetkisi olmadan commit/push/deploy yapılmaz.
-
-## Sürüm ve güncelleme
-
-Ortak ilkeler projedeki sürümlenmiş kopyadan okunur; kardeş repo yolu varsayılmaz.
-Framework güncellemesi bilinçli olarak git pull ve yeniden install ile yapılır,
-sonra proje farkı gözden geçirilip commit edilir. Yerel değişiklikle çatışırsa
-installer durur. Önceki sürümün sahip olduğu team_* rolleri yalnız kayıtlı hash ile
-aynıysa kaldırılır; proje rolleri korunur. Global Codex ayarları değiştirilmez.
-
-M1'de ai-lab-tasks yalnız connector'dır. Framework ve proje rolleri ayrı kaynaklardan
-kurulur. Connector model varsayılanı runtime.toml içindedir (Luna/low); proje rolü
-ayarları proje reposundadır. GitHub IO akışı workflows/github-connector.md içindedir.
-
-```sh
-python3 -m unittest discover -s tests -v
 ```
+~/.config/opencode/         # Global user config
+ai-team/opencode/           # Generic templates (reference)
+your-project/.opencode/     # Project-specific overrides
+```
+
+OpenCode, parent'tan child'a doğru merge eder. Generic tanımlar üzerine proje-specific tanımlar eklenir.
+
+## Generic Agents
+
+| Agent | Mode | Açıklama |
+|-------|------|----------|
+| `coordinator` | primary | Proje koordinasyonu ve delegasyon |
+| `developer` | all | Generic yazılım geliştirme |
+| `qa` | subagent | Bağımsız test ve review |
+| `designer` | subagent | UX/UI tasarım (opsiyonel) |
+
+## Templates
+
+### `templates/handoff.md`
+Session devir teslimi için standart format. Branch, commit, yapılan değişiklikler, test sonuçları ve sonraki adımlar.
+
+### `templates/project.json`
+Proje komutları ve ortam tanımları. Setup, start, test komutlarını projeye göre özelleştir.
+
+## İlkeler Özeti
+
+1. **Oku önce**: AGENTS.md, handoff.md, proje yapısını anla
+2. **Plan yap**: Observable acceptance kriterleri belirle
+3. **Delegasyon**: Uygun agentlara görev ver, tek dosya tek yazar
+4. **Doğrula**: Test komutlarını çalıştır, evidence kaydet
+5. **Devret**: Handoff dokümantasyonunu güncelle
+
+## Kısıtlamalar
+
+- Otomatik commit/push/deploy yok (user authorization gerekli)
+- Credentials ve secrets çıktılara dahil edilmez
+- Production veritabanı veya API kullanılmaz (synthetic fixtures)
+- Coverage/assertion zayıflatılmaz
+
+## Sürümleme
+
+Framework güncellemeleri bilinçli olarak yapılır:
+```bash
+cd ai-team && git pull
+# Değişiklikleri gözden geçir, projelere uygula
+```
+
+Proje-specific tanımlar her zaman proje reposunda kalır ve framework güncellemelerinden etkilenmez.
