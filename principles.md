@@ -168,12 +168,40 @@ Before pausing or switching context, update `.ai/handoff.md`:
 
 ---
 
-## Model Usage
+## Model Selection
 
-- Default: Project-specified model (do not assume)
-- Never silently escalate to costlier model
-- Inherit runtime permissions
-- Role files and assigned paths are not security boundaries
+### Tiers (provider-agnostic)
+
+| Tier | Examples | Cost |
+|------|----------|------|
+| HIGH | Claude Opus, GPT-4.5, Gemini Ultra | $$$ |
+| MID | Claude Sonnet, GPT-4.1, Gemini Pro | $$ |
+| LOW | Claude Haiku, GPT-4.1-mini, Gemini Flash | $ |
+
+### Auto-Switch Rules
+
+**Switch UP** (MID → HIGH):
+- Complex multi-file refactoring
+- Architectural decisions
+- Debugging after 2+ failed attempts
+- Security-sensitive code review
+
+**Stay MID** (default):
+- Feature implementation
+- Bug fixes
+- Test writing
+- Documentation
+
+**Switch DOWN** (MID → LOW):
+- Simple formatting
+- Repetitive bulk changes
+- Boilerplate generation
+- Simple search/read tasks
+
+### Behavior
+- Auto-switch within session
+- Log switch: `[MODEL] Switched to X for: <reason>`
+- Return to default after task completes
 
 ---
 
