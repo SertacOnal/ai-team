@@ -1,22 +1,56 @@
 # AI Team Framework
 
-Generic agent framework. Proje-specific agent tanımlamaz.
+Generic agent templates + Karpathy principles.
 
-## Dosyalar
+## Structure
 
-| Dosya | Açıklama |
-|-------|----------|
-| `principles.md` | Karpathy-inspired kodlama ilkeleri |
-| `opencode/agents/` | Generic OpenCode agent templates |
-| `templates/` | Handoff ve project.json şablonları |
+```
+ai-team/
+├── principles.md              # Core principles, caveman talk, model selection
+├── opencode/
+│   ├── opencode.jsonc         # Base config
+│   └── agents/                # Base templates
+│       ├── developer.md
+│       ├── qa.md
+│       └── coordinator.md
+└── templates/
+    ├── handoff.md
+    └── project.json
+```
 
-## Generic Agents
+## Base Agents
 
 | Agent | Purpose |
 |-------|---------|
-| `coordinator` | Proje koordinasyonu |
-| `developer` | Yazılım geliştirme |
-| `qa` | Test ve review |
-| `designer` | UI/UX (opsiyonel) |
+| `developer` | Implementation, testing |
+| `qa` | Independent review |
+| `coordinator` | Orchestration |
+| `designer` | UI/UX design (optional) |
 
-Bunlar template olarak kullanılır, proje-specific agentlar her projede ayrı tanımlanır.
+## Usage
+
+### New Project
+
+1. Copy `opencode/agents/` to `your-project/.opencode/agents/`
+2. Add project-specific details (stack, commands, rules)
+3. Add `../ai-team/principles.md` to instructions
+
+### Inheritance
+
+```
+principles.md        → Caveman, model selection, self-maintenance
+base agents          → Common workflow, constraints
+project agents       → Stack, commands, project rules
+project instructions → Knowledge base (schema, api, etc.)
+```
+
+## What Goes Where
+
+| Content | Location |
+|---------|----------|
+| Caveman talk | principles.md |
+| Model selection | principles.md |
+| Self-maintenance | principles.md |
+| Common workflow | base agents |
+| Stack/commands | project agents |
+| Schema/API docs | project instructions |
