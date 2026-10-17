@@ -89,8 +89,9 @@ Do not end a product request at a plan.
 
 ### Delegation Rules
 
+- **Default to delegation** — don't bypass agents even for "small" tasks
+- Delegation feeds the feedback loop: knowledge base updates, agent learning
 - Assign: objective, acceptance criteria, exclusive writable files, required checks
-- Use only useful specialists — not every role for every task
 - One writer per file at a time
 - API changes require agreed contract before parallel frontend/backend work
 
@@ -100,6 +101,7 @@ Do not end a product request at a plan.
 |------|----------------|
 | **Developer** | Implementation, follows assigned scope |
 | **QA** | Independent review, testing, acceptance verification |
+| **DBA** | Schema migrations, seed scripts, data operations |
 | **Designer** | UI/UX design (optional, for substantive work only) |
 
 ### Workflow

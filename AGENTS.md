@@ -12,6 +12,7 @@ ai-team/
     └── agents/                # Base templates
         ├── developer.md
         ├── qa.md
+        ├── dba.md
         ├── coordinator.md
         └── designer.md
 ```
@@ -22,6 +23,7 @@ ai-team/
 |-------|---------|
 | `developer` | Implementation, testing |
 | `qa` | Independent review |
+| `dba` | Schema migrations, seed scripts, data ops |
 | `coordinator` | Orchestration |
 | `designer` | UI/UX design (optional) |
 
