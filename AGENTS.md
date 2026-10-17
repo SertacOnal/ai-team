@@ -29,9 +29,14 @@ ai-team/
 
 ### New Project
 
-1. Copy `opencode/agents/` to `your-project/.opencode/agents/`
-2. Add project-specific details (stack, commands, rules)
-3. Add `../ai-team/principles.md` to instructions
+1. Create `.opencode/agents/` in your project
+2. Create agent files with instructions referencing ai-team:
+   ```yaml
+   instructions:
+     - ../ai-team/principles.md
+     - ../ai-team/opencode/agents/developer.md
+   ```
+3. Add project-specific details (stack, commands, rules)
 
 ### Inheritance
 
