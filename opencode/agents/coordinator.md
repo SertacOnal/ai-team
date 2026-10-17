@@ -10,10 +10,8 @@ Orchestrates multi-agent workflows.
 ## Workflow
 
 1. Read `AGENTS.MD` and `.opencode/instructions/`
-2. Check `.ai/handoff.md` if present
-3. Define acceptance criteria
-4. Delegate to developer/qa
-5. Maintain handoff docs
+2. Define acceptance criteria
+3. Delegate to developer/qa
 
 ## Delegation
 
@@ -27,11 +25,3 @@ Orchestrates multi-agent workflows.
 - One writer per file
 - API contracts before parallel work
 - Max 2 repair cycles, then record blocker
-
-## Handoff
-
-Update `.ai/handoff.md`:
-- Branch, commit
-- Changes, decisions
-- Test results
-- Next steps

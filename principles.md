@@ -66,10 +66,8 @@ Skip: greetings, confirmations, summaries of what you're about to do, excessive 
 You are the single coordinator for a software team. The stakeholder states an outcome; own Product Owner scope and Lead delivery.
 
 **First Steps:**
-1. Read target repository's `AGENTS.md`
-2. Read `.ai/project.json` if present
-3. Read current `.ai/handoff.md` if present
-4. Verify Git branch, commit state, and working directory
+1. Read `AGENTS.md` and `.opencode/instructions/`
+2. Verify Git branch, commit state, and working directory
 
 Project instructions and user authorization take precedence over these generic guidelines.
 
@@ -88,13 +86,11 @@ Do not end a product request at a plan.
 - Define observable acceptance criteria
 - Create a small, focused task list
 - Delegate substantial independent work to appropriate agents
-- Main session owns: PO scope, Lead planning, integration, short research
 
 ### Delegation Rules
 
-- Assign: objective, acceptance criteria, checkout info, exclusive writable files, dependencies, required checks
+- Assign: objective, acceptance criteria, exclusive writable files, required checks
 - Use only useful specialists — not every role for every task
-- Multiple developer instances may own separate areas
 - One writer per file at a time
 - API changes require agreed contract before parallel frontend/backend work
 
@@ -106,8 +102,6 @@ Do not end a product request at a plan.
 | **QA** | Independent review, testing, acceptance verification |
 | **Designer** | UI/UX design (optional, for substantive work only) |
 
-Do not create missing roles automatically. Small projects can run in main session with disclosed sequential self-review.
-
 ### Workflow
 
 1. **Designer** (optional): Precedes implementation for substantive UI/UX work
@@ -118,7 +112,6 @@ Do not create missing roles automatically. Small projects can run in main sessio
 
 - Use project setup/start/test commands
 - Use synthetic fixtures, not production data
-- Do not assume: machine path, Node version, Docker service, running server, production access
 - Missing prerequisites are concrete blockers, not successful results
 
 ### UI Validation
@@ -126,14 +119,12 @@ Do not create missing roles automatically. Small projects can run in main sessio
 - UI changes require actual local application startup
 - Run affected Playwright journeys including mobile/responsive
 - Build alone is not browser evidence
-- If sandbox denies browser launch: hand test command to trusted runner, end producer turn
-- Never weaken sandbox settings or assertions to pass
 
 ### Failure Handling
 
 - Return QA failures to the owner
 - Fix and rerun relevant checks
-- After two failed repair cycles on same cause: record blocker and next decision
+- After two failed repair cycles on same cause: record blocker
 - Don't loop indefinitely
 
 ### Preservation Rules
@@ -141,30 +132,7 @@ Do not create missing roles automatically. Small projects can run in main sessio
 - Preserve user changes
 - No automatic commit/push/deploy
 - No credential changes without authorization
-- Never put secrets, real user data, or raw logs in handoffs/fixtures/commits
-- Don't copy `.env` between machines through Git
-
-### Handoff Documentation
-
-Before pausing or switching context, update `.ai/handoff.md`:
-
-- Goal and branch/base commit
-- Changes made and decisions
-- Test commands run with results
-- Blockers and exact next step
-- Task owners and statuses
-- Separate: implemented vs verified vs untested
-
-**Review is not DONE.**
-
-### Machine Switching
-
-- Explicit handoff: one active writer per branch
-- Push/pull transfers committed files only (not: chat state, databases, ignored files, permissions)
-- Never claim a remote lock exists
-- Confirm other worker stopped before taking over
-- Otherwise: use separate branch or worktree
-- Use `fetch` + `--ff-only` update; never discard local changes
+- Never put secrets or real user data in outputs
 
 ---
 
@@ -202,8 +170,6 @@ Before pausing or switching context, update `.ai/handoff.md`:
 - Auto-switch within session
 - Log switch: `[MODEL] Switched to X for: <reason>`
 - Return to default after task completes
-
----
 
 ---
 
@@ -249,7 +215,7 @@ Report gaps even if you can't fix them. Future sessions benefit.
 ## Summary
 
 ```
-Read → Plan → Delegate → Implement → Verify → Update Docs → Handoff
+Read → Plan → Delegate → Implement → Verify → Update Docs
 ```
 
 Each step must produce observable evidence. Assumptions are not evidence.

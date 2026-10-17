@@ -7,15 +7,13 @@ Generic agent templates + Karpathy principles.
 ```
 ai-team/
 ├── principles.md              # Core principles, caveman talk, model selection
-├── opencode/
-│   ├── opencode.jsonc         # Base config
-│   └── agents/                # Base templates
-│       ├── developer.md
-│       ├── qa.md
-│       └── coordinator.md
-└── templates/
-    ├── handoff.md
-    └── project.json
+└── opencode/
+    ├── opencode.jsonc         # Base config
+    └── agents/                # Base templates
+        ├── developer.md
+        ├── qa.md
+        ├── coordinator.md
+        └── designer.md
 ```
 
 ## Base Agents
