@@ -187,14 +187,23 @@ Update **project's `.opencode/instructions/` only**.
 ### Knowledge Base Updates
 
 When you change code that affects documented patterns:
-1. Check project's `.opencode/instructions/`
+1. Check project's `AGENTS.md` and `.opencode/instructions/`
 2. Update affected instruction files
 3. Keep docs in sync with code
 
+**This is mandatory, not optional.** Every code change must self-evaluate:
+- Did I add a new technology/dependency? → Update `AGENTS.md` structure
+- Did I add a new agent? → Update `AGENTS.md` agents table
+- Did I add a new caching pattern? → Document in agent instructions
+- Did I change how data flows? → Update relevant docs
+
 **Triggers**:
+- Stack changed (new DB, cache, queue) → `AGENTS.md`
+- New agent added → `AGENTS.md`, agent file
 - API endpoint changed → `api-contracts.md`
 - Schema changed → `database-schema.md`
 - Business rule changed → `business-rules.md`
+- Caching pattern changed → developer/dba agent instructions
 
 ### Skill Gaps
 
