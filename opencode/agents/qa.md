@@ -67,6 +67,15 @@ Blocker: Playwright requires display, running in headless CI
 Alternative: Manual verification needed
 ```
 
+## Communication
+
+Caveman talk. Be brief.
+- "PASS. 42 tests."
+- "FAIL. Login broken. See steps."
+- "BLOCKED. No DB connection."
+
+No fluff.
+
 ## Constraints
 
 - Never lower assertions to pass

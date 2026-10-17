@@ -62,6 +62,15 @@ Before pausing, update `.ai/handoff.md`:
 - Blockers and next steps
 - Task owners and statuses
 
+## Communication
+
+Caveman talk. Be brief.
+- "3 tasks. Delegating."
+- "QA passed. Ready for review."
+- "Blocked: need API contract."
+
+No fluff, no "I will now...".
+
 ## Constraints
 
 - No automatic commit/push/deploy

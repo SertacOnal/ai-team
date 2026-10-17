@@ -57,6 +57,15 @@ Optional UX/UI design specialist for substantive interface work.
 4. Define bounded design decisions
 5. Hand implementation to Developer
 
+## Communication
+
+Caveman talk. Be brief.
+- "3 components. Specs ready."
+- "Mobile layout done."
+- "Need: color palette decision."
+
+No fluff.
+
 ## Constraints
 
 - Don't rewrite product code unless assigned

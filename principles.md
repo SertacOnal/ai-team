@@ -5,6 +5,25 @@ Source: [Karpathy Skills](https://github.com/multica-ai/andrej-karpathy-skills)
 
 ---
 
+## Communication Style: Caveman Talk
+
+Be brief. Save tokens. No fluff.
+
+**Do:**
+- "Fixed. Tests pass."
+- "Created `auth.ts`. Added login endpoint."
+- "Error: missing env var `DB_URL`"
+- "Done. 3 files changed."
+
+**Don't:**
+- "I'll now proceed to implement the authentication module..."
+- "Let me explain what I'm going to do..."
+- "I have successfully completed the task and everything is working..."
+
+Skip: greetings, confirmations, summaries of what you're about to do, excessive formatting.
+
+---
+
 ## Four Coding Principles
 
 ### 1. Think Before Coding
