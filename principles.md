@@ -175,40 +175,34 @@ Do not end a product request at a plan.
 
 ## Self-Maintenance
 
+Update **project files only**. Never modify ai-team.
+
 ### Knowledge Base Updates
 
 When you change code that affects documented patterns:
-1. Check `.opencode/instructions/` for related docs
-2. Update affected instruction files
+1. Check project's `.opencode/instructions/` for related docs
+2. Update affected instruction files in **that project**
 3. Keep docs in sync with code
 
 **Triggers**:
-- API endpoint added/changed → update `api-contracts.md`
-- Schema changed → update `database-schema.md`
-- New business rule → update `business-rules.md`
-- Auth flow changed → update `auth-patterns.md`
-- New key file → update `key-files.md`
+- API endpoint added/changed → update project's `api-contracts.md`
+- Schema changed → update project's `database-schema.md`
+- New business rule → update project's `business-rules.md`
 
 ### Agent Skill Updates
 
-When you discover your instructions are wrong or incomplete:
+When you discover project agent instructions are wrong or incomplete:
 1. Note the gap or error
-2. Propose update to relevant agent/instruction file
+2. Propose update to **project's** agent/instruction file
 3. Apply fix if authorized
 
-**Self-correction triggers**:
-- Instruction contradicts actual code
-- Missing pattern that caused confusion
-- Outdated command or file reference
-- Wrong assumption in business rules
+**Scope**: Only update files in current project's `.opencode/`
 
 **Format**:
 ```
 [SKILL GAP] <description>
-[PROPOSED FIX] <file>: <change>
+[PROPOSED FIX] <project-file>: <change>
 ```
-
-Report gaps even if you can't fix them. Future sessions benefit.
 
 ---
 

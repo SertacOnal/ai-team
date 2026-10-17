@@ -1,50 +1,65 @@
 # AI Team Framework
 
-Karpathy-inspired coding principles ve generic OpenCode agent templates.
+Karpathy-inspired coding principles + OpenCode agent templates.
 
-## İçerik
+## Structure
 
 ```
 ai-team/
-├── principles.md           # Temel kodlama ilkeleri
-├── opencode/
-│   ├── opencode.jsonc      # Base configuration
-│   └── agents/             # Generic agent templates
-│       ├── coordinator.md
-│       ├── developer.md
-│       ├── qa.md
-│       └── designer.md
-└── templates/
-    ├── handoff.md          # Session devir teslim şablonu
-    └── project.json        # Proje config şablonu
+├── principles.md           # Core principles, caveman talk, model selection
+└── opencode/
+    ├── opencode.jsonc      # Base config
+    └── agents/             # Base agent templates
+        ├── coordinator.md
+        ├── developer.md
+        ├── qa.md
+        └── designer.md
 ```
 
-## Kullanım
+## Usage
 
-### Proje referansı olarak
-```jsonc
-// your-project/.opencode/opencode.jsonc
-{
-  "instructions": ["../ai-team/principles.md"]
-}
+### New Project Setup
+
+1. Create `.opencode/agents/` in your project
+2. Create agent files referencing ai-team:
+
+```yaml
+# your-project/.opencode/agents/developer.md
+---
+description: Your project developer
+mode: all
+instructions:
+  - ../ai-team/principles.md
+  - ../ai-team/opencode/agents/developer.md
+---
+
+# Developer — Your Project
+
+## Stack
+...
+
+## Commands
+...
 ```
 
-### Agent template olarak
-```bash
-cp -r ai-team/opencode/agents/ your-project/.opencode/agents/
-# Proje-specific özelleştirmeler ekle
-```
+3. Add project-specific details (stack, commands, rules)
 
-## Dört İlke
+## Four Principles
 
-1. **Think Before Coding** — Analiz et, sonra kodla
-2. **Simplicity First** — Mevcut konvansiyonlarla çöz
-3. **Surgical Changes** — Sadece ilgili dosyalara dokun
-4. **Goal-Driven** — Observable evidence ile doğrula
+1. **Think Before Coding** — Analyze, then implement
+2. **Simplicity First** — Existing conventions over new abstractions
+3. **Surgical Changes** — Touch only relevant files
+4. **Goal-Driven** — Observable evidence, not assumptions
 
-Detaylar için `principles.md` dosyasına bak.
+## Features
 
-## Referans
+- **Caveman Talk** — Brief responses, save tokens
+- **Model Selection** — Auto-switch between tiers (HIGH/MID/LOW)
+- **Self-Maintenance** — Update knowledge base when code changes
+
+See `principles.md` for details.
+
+## References
 
 - [Karpathy Skills](https://github.com/multica-ai/andrej-karpathy-skills)
 - [OpenCode Docs](https://opencode.ai/v2/docs/)
