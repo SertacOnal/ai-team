@@ -1,65 +1,45 @@
-# AI Team Framework
+# AI Team Framework for Codex
 
-Karpathy-inspired coding principles + OpenCode agent templates.
+Reusable coding principles and role templates for Codex on macOS and Linux.
 
 ## Structure
 
-```
+```text
 ai-team/
-├── principles.md           # Core principles, caveman talk, model selection
-└── opencode/
-    ├── opencode.jsonc      # Base config
-    └── agents/             # Base agent templates
-        ├── coordinator.md
-        ├── developer.md
-        ├── qa.md
-        └── designer.md
+├── AGENTS.md              # Native Codex repository instructions
+├── principles.md          # Shared delivery principles
+└── agents/                # Optional role templates
+    ├── coordinator.md
+    ├── developer.md
+    ├── qa.md
+    ├── dba.md
+    └── designer.md
 ```
 
-## Usage
+## New project setup
 
-### New Project Setup
+1. Add a concise `AGENTS.md` to the project root.
+2. Keep `ai-team` and the project as sibling directories under the same parent.
+3. Put project-local supporting guidance under `.codex/agents/` and
+   `.codex/instructions/`.
+4. In the project's `AGENTS.md`, tell Codex to read
+   `../ai-team/principles.md`, the relevant shared `../ai-team/agents/<role>.md`,
+   and then the matching project-local files.
+5. Keep model/provider selection in Codex settings, not repository files.
 
-1. Create `.opencode/agents/` in your project
-2. Create agent files referencing ai-team:
+Codex automatically loads applicable `AGENTS.md` files. Files under `.codex/`
+are ordinary repository files and are read when `AGENTS.md` or the user asks
+Codex to read them.
 
-```yaml
-# your-project/.opencode/agents/developer.md
----
-description: Your project developer
-mode: all
-instructions:
-  - ../ai-team/principles.md
-  - ../ai-team/opencode/agents/developer.md
----
+Consumer projects intentionally depend on the `../ai-team` sibling checkout. If
+that path is unavailable, Codex must report the missing dependency rather than
+silently inventing replacement guidance.
 
-# Developer — Your Project
+## Principles
 
-## Stack
-...
+1. Think before coding.
+2. Prefer the simplest complete solution.
+3. Make surgical changes and preserve unrelated work.
+4. Verify outcomes with observable evidence.
 
-## Commands
-...
-```
-
-3. Add project-specific details (stack, commands, rules)
-
-## Four Principles
-
-1. **Think Before Coding** — Analyze, then implement
-2. **Simplicity First** — Existing conventions over new abstractions
-3. **Surgical Changes** — Touch only relevant files
-4. **Goal-Driven** — Observable evidence, not assumptions
-
-## Features
-
-- **Caveman Talk** — Brief responses, save tokens
-- **Model Selection** — Auto-switch between tiers (HIGH/MID/LOW)
-- **Self-Maintenance** — Update knowledge base when code changes
-
-See `principles.md` for details.
-
-## References
-
-- [Karpathy Skills](https://github.com/multica-ai/andrej-karpathy-skills)
-- [OpenCode Docs](https://opencode.ai/v2/docs/)
+See `principles.md` for the complete framework.

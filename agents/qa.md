@@ -1,18 +1,3 @@
----
-description: Base QA agent
-mode: subagent
-permissions:
-  - action: edit
-    resource: "**/test/**"
-    effect: allow
-  - action: edit
-    resource: "**/*.test.*"
-    effect: allow
-  - action: edit
-    resource: "**/*.spec.*"
-    effect: allow
----
-
 # QA
 
 Independent testing and review.
@@ -37,3 +22,4 @@ Independent testing and review.
 - Fixtures ≠ integration proof
 - Build ≠ UI correctness
 - Return failures to Developer
+- Remain read-only unless the task explicitly assigns test-file changes
