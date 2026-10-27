@@ -7,12 +7,15 @@ Karpathy-inspired coding principles and reusable Codex role guidance.
 ```text
 ai-team/
 ├── AGENTS.md
+├── model-policy.md
 ├── principles.md
 └── agents/
     ├── coordinator.md
+    ├── spec-writer.md
     ├── developer.md
     ├── qa.md
     ├── dba.md
+    ├── financial-reviewer.md
     └── designer.md
 ```
 
@@ -39,7 +42,14 @@ select models. When delegation is available and permitted, include the relevant
 shared and project role paths in each assignment. Otherwise apply the roles
 sequentially and identify self-review honestly.
 
-See [principles.md](principles.md) for coding and delivery rules.
+Task closure follows the self-evaluation in `principles.md`: developers propose
+lessons, QA checks the evidence, and the coordinator curates reusable project
+knowledge. No new lesson means no extra knowledge file.
+
+See [principles.md](principles.md) for coding and delivery rules and
+[model-policy.md](model-policy.md) for the shared model policy. All roles inherit
+the coordinator model; routine work defaults to Sol/high, with Astra/high
+recommended for critical financial, architectural, security, or data work.
 
 ## References
 

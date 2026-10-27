@@ -11,8 +11,12 @@ preserve unrelated changes.
 
 ## Structure
 
-- `principles.md`: coding discipline, delivery, runtime limits, documentation upkeep.
+- `principles.md`: coding discipline, delivery, task self-evaluation, runtime limits,
+  and evidence-based knowledge upkeep.
+- `model-policy.md`: coordinator model recommendations inherited by all roles.
+- `agents/financial-reviewer.md`: independent financial correctness review.
 - `agents/coordinator.md`: scope, integration, and delegation guidance.
+- `agents/spec-writer.md`: requirements, contracts, and testable acceptance criteria.
 - `agents/developer.md`: implementation and verification.
 - `agents/qa.md`: independent review and acceptance evidence.
 - `agents/dba.md`: schema, data, and cache review.
