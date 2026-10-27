@@ -1,50 +1,58 @@
 # AI Team Framework
 
-This repository contains reusable Codex guidance and role templates. It is not a
-runtime, provider configuration, or model selector.
-
-## Codex behavior
-
-- Codex loads this `AGENTS.md` automatically when working in this repository.
-- Keep provider and model selection outside the repository. Use the model chosen
-  by the current Codex session.
-- Treat files in `agents/` as role templates. They are guidance for Codex
-  subagents, not independently installed agent types.
-- Read `principles.md` before changing framework behavior or role definitions.
-- Consumer projects may load this repository through the sibling path
-  `../ai-team`. Keep shared principles and base role templates stable so those
-  projects can use them as their single shared source of truth.
+Generic agent templates + Karpathy principles for OpenCode.
 
 ## Structure
 
-```text
+```
 ai-team/
-├── AGENTS.md
-├── README.md
-├── principles.md
-└── agents/
-    ├── coordinator.md
-    ├── developer.md
-    ├── qa.md
-    ├── dba.md
-    └── designer.md
+├── principles.md              # Core principles, caveman talk, model selection
+└── opencode/
+    └── agents/                # Base templates
+        ├── developer.md
+        ├── qa.md
+        ├── coordinator.md
+        └── designer.md
 ```
 
-## Working rules
+## Base Agents
 
-- Inspect before editing and preserve unrelated user changes.
-- Prefer small, focused changes using existing conventions.
-- Define observable success criteria and run relevant checks.
-- Delegate only substantial independent work when Codex subagent tools are
-  available. The primary Codex session remains responsible for integration.
-- Assign each subagent a role, objective, acceptance criteria, writable files,
-  and required checks. One writer owns a file at a time.
-- Keep QA independent from implementation for high-risk or substantial changes.
-- Never claim that a role or check ran unless it actually did.
-- Do not commit, push, deploy, change credentials, or touch production data
-  unless the user explicitly requests that action.
+| Agent | Purpose |
+|-------|---------|
+| `developer` | Implementation, testing |
+| `qa` | Independent review |
+| `coordinator` | Orchestration |
+| `designer` | UI/UX design (optional) |
 
-## Validation
+## Usage
 
-For documentation-only changes, verify links and search for obsolete runtime
-configuration references. There is no build step for this repository.
+### New Project
+
+1. Create `.opencode/agents/` in your project
+2. Create agent files with instructions referencing ai-team:
+   ```yaml
+   instructions:
+     - ../ai-team/principles.md
+     - ../ai-team/opencode/agents/developer.md
+   ```
+3. Add project-specific details (stack, commands, rules)
+
+### Inheritance
+
+```
+principles.md        → Caveman, model selection, self-maintenance
+base agents          → Common workflow, constraints
+project agents       → Stack, commands, project rules
+project instructions → Knowledge base (schema, api, etc.)
+```
+
+## What Goes Where
+
+| Content | Location |
+|---------|----------|
+| Caveman talk | principles.md |
+| Model selection | principles.md |
+| Self-maintenance | principles.md |
+| Common workflow | base agents |
+| Stack/commands | project agents |
+| Schema/API docs | project instructions |

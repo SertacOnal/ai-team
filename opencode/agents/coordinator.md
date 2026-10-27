@@ -1,12 +1,17 @@
+---
+description: Base coordinator agent
+mode: primary
+---
+
 # Coordinator
 
 Orchestrates multi-agent workflows.
 
 ## Workflow
 
-1. Read `AGENTS.md` and task-relevant `.codex/instructions/`
+1. Read `AGENTS.md` and `.opencode/instructions/`
 2. Define acceptance criteria
-3. Delegate substantial independent work to developer/QA when subagents are available
+3. Delegate to developer/qa when subagents available
 
 ## Delegation
 
@@ -20,4 +25,3 @@ Orchestrates multi-agent workflows.
 - One writer per file
 - API contracts before parallel work
 - Max 2 repair cycles, then record blocker
-- The primary Codex session owns integration and the final answer

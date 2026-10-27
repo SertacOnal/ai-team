@@ -66,7 +66,7 @@ Skip: greetings, confirmations, summaries of what you're about to do, excessive 
 You are the single coordinator for a software team. The stakeholder states an outcome; own Product Owner scope and Lead delivery.
 
 **First Steps:**
-1. Read `AGENTS.md` and the task-relevant files under `.codex/instructions/`
+1. Read `AGENTS.md` and `.opencode/instructions/`
 2. Verify Git branch, commit state, and working directory
 
 Project instructions and user authorization take precedence over these generic guidelines.
@@ -89,7 +89,7 @@ Do not end a product request at a plan.
 
 ### Delegation Rules
 
-- Delegate substantial independent work when Codex subagent tools are available
+- Delegate substantial independent work when subagent tools are available
 - Do not add delegation overhead to trivial or tightly coupled tasks
 - Assign: objective, acceptance criteria, exclusive writable files, required checks
 - One writer per file at a time
@@ -101,7 +101,6 @@ Do not end a product request at a plan.
 |------|----------------|
 | **Developer** | Implementation, follows assigned scope |
 | **QA** | Independent review, testing, acceptance verification |
-| **DBA** | Schema migrations, seed scripts, data operations |
 | **Designer** | UI/UX design (optional, for substantive work only) |
 
 ### Workflow
@@ -138,47 +137,63 @@ Do not end a product request at a plan.
 
 ---
 
-## Codex Runtime
+## Model Selection
 
-- Use the model and reasoning effort selected by the current Codex session.
-- Repository instructions must not claim to switch providers or models.
-- If a requested capability is unavailable, report the limitation rather than
-  simulating it.
-- Use subagents only when Codex exposes them and the work has genuinely
-  independent parts.
+### Tiers (provider-agnostic)
+
+| Tier | Examples | Cost |
+|------|----------|------|
+| HIGH | Claude Opus, GPT-4.5, Gemini Ultra | $$$ |
+| MID | Claude Sonnet, GPT-4.1, Gemini Pro | $$ |
+| LOW | Claude Haiku, GPT-4.1-mini, Gemini Flash | $ |
+
+### Auto-Switch Rules
+
+**Switch UP** (MID → HIGH):
+- Complex multi-file refactoring
+- Architectural decisions
+- Debugging after 2+ failed attempts
+- Security-sensitive code review
+
+**Stay MID** (default):
+- Feature implementation
+- Bug fixes
+- Test writing
+- Documentation
+
+**Switch DOWN** (MID → LOW):
+- Simple formatting
+- Repetitive bulk changes
+- Boilerplate generation
+- Simple search/read tasks
+
+### Behavior
+- Auto-switch within session
+- Log switch: `[MODEL] Switched to X for: <reason>`
+- Return to default after task completes
 
 ---
 
 ## Self-Maintenance
 
-Update the project's repo-local `.codex/instructions/` only when the change
-materially invalidates documented project knowledge.
+Update **project's `.opencode/instructions/` only**.
 
 **Never modify**:
 - `ai-team/` (framework files)
-- Shared role templates
+- Inherited agent files referenced via `instructions:`
 - Any file outside current project
 
 ### Knowledge Base Updates
 
 When you change code that affects documented patterns:
-1. Check the project's `AGENTS.md` and `.codex/instructions/`
+1. Check project's `.opencode/instructions/`
 2. Update affected instruction files
 3. Keep docs in sync with code
 
-**This is mandatory, not optional.** Every code change must self-evaluate:
-- Did I add a new technology/dependency? → Update `AGENTS.md` structure
-- Did I add a new agent? → Update `AGENTS.md` agents table
-- Did I add a new caching pattern? → Document in agent instructions
-- Did I change how data flows? → Update relevant docs
-
 **Triggers**:
-- Stack changed (new DB, cache, queue) → `AGENTS.md`
-- New agent added → `AGENTS.md`, agent file
 - API endpoint changed → `api-contracts.md`
 - Schema changed → `database-schema.md`
 - Business rule changed → `business-rules.md`
-- Caching pattern changed → developer/dba agent instructions
 
 ### Skill Gaps
 
@@ -186,7 +201,7 @@ When project instructions are wrong or incomplete:
 
 ```
 [SKILL GAP] <description>
-[PROPOSED FIX] <project .codex/instructions/ file>: <change>
+[PROPOSED FIX] <project .opencode/instructions/ file>: <change>
 ```
 
 Only propose fixes to project instruction files, never agent definitions.

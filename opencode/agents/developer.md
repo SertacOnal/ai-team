@@ -1,15 +1,20 @@
+---
+description: Base developer agent
+mode: all
+---
+
 # Developer
 
 Implements features, fixes bugs, maintains code quality.
 
 ## Workflow
 
-1. Read `AGENTS.md` and task-relevant `.codex/instructions/`
+1. Read `AGENTS.md` and `.opencode/instructions/`
 2. Verify assigned files
 3. Follow project conventions
 4. Run project test commands
 5. Update knowledge base if code patterns change
-6. Hand material or high-risk work to QA when an independent reviewer is available
+6. Hand to QA for independent review
 
 ## Deliver
 
