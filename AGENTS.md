@@ -8,11 +8,17 @@ Generic agent templates + Karpathy principles for OpenCode.
 ai-team/
 ├── principles.md              # Core principles, caveman talk, model selection
 └── opencode/
-    └── agents/                # Base templates
-        ├── developer.md
-        ├── qa.md
-        ├── coordinator.md
-        └── designer.md
+    ├── agents/                # Base templates
+    │   ├── developer.md
+    │   ├── qa.md
+    │   ├── coordinator.md
+    │   └── designer.md
+    ├── config/                # Shared configurations
+    │   └── playwright.jsonc   # Browser automation config
+    ├── scripts/               # Utility scripts
+    │   └── chrome-debug.sh    # Chrome remote debugging launcher
+    └── docs/                  # Documentation
+        └── browser-automation.md
 ```
 
 ## Base Agents
@@ -56,3 +62,28 @@ project instructions → Knowledge base (schema, api, etc.)
 | Common workflow | base agents |
 | Stack/commands | project agents |
 | Schema/API docs | project instructions |
+
+## Browser Automation
+
+Agents can control Chrome via Playwright MCP using existing login sessions.
+
+### Quick Start
+
+```bash
+# 1. Start Chrome with remote debugging
+~/Repos/ai-team/opencode/scripts/chrome-debug.sh
+
+# 2. Add to project opencode.json (or copy opencode/config/playwright.jsonc)
+{
+  "mcp": {
+    "servers": {
+      "playwright": {
+        "type": "local",
+        "command": ["npx", "-y", "@playwright/mcp", "--cdp-endpoint", "http://127.0.0.1:9222"]
+      }
+    }
+  }
+}
+```
+
+See `opencode/docs/browser-automation.md` for full documentation.

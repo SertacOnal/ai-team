@@ -1,0 +1,26 @@
+// Playwright MCP configuration for Chrome remote debugging
+// Copy to your project's opencode.json or merge with existing config
+//
+// Prerequisites:
+// 1. Start Chrome with: ../ai-team/opencode/scripts/chrome-debug.sh
+// 2. Or add alias to ~/.zshrc:
+//    alias chrome-debug='~/Repos/ai-team/opencode/scripts/chrome-debug.sh'
+//
+// Session data persists in ~/chrome-debug - login once, use everywhere
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "servers": {
+      "playwright": {
+        "type": "local",
+        "command": [
+          "npx",
+          "-y",
+          "@playwright/mcp",
+          "--cdp-endpoint",
+          "http://127.0.0.1:9222"
+        ]
+      }
+    }
+  }
+}
