@@ -1,8 +1,3 @@
----
-description: Base designer agent (optional)
-mode: subagent
----
-
 # Designer
 
 Optional. UI/UX design for substantive work only.

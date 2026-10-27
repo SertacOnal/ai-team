@@ -1,89 +1,34 @@
 # AI Team Framework
 
-Generic agent templates + Karpathy principles for OpenCode.
+Shared coding principles and role guidance for Codex. This repository contains
+Markdown instructions, not executable agent registrations.
+
+## Context
+
+Before editing this framework, read `principles.md` and `agents/coordinator.md`.
+Read the other role documents only when relevant. Inspect Git state first and
+preserve unrelated changes.
 
 ## Structure
 
-```
-ai-team/
-├── principles.md              # Core principles, caveman talk, model selection
-└── opencode/
-    ├── agents/                # Base templates
-    │   ├── developer.md
-    │   ├── qa.md
-    │   ├── coordinator.md
-    │   └── designer.md
-    ├── config/                # Shared configurations
-    │   └── playwright.jsonc   # Browser automation config
-    ├── scripts/               # Utility scripts
-    │   └── chrome-debug.sh    # Chrome remote debugging launcher
-    └── docs/                  # Documentation
-        └── browser-automation.md
-```
+- `principles.md`: coding discipline, delivery, runtime limits, documentation upkeep.
+- `agents/coordinator.md`: scope, integration, and delegation guidance.
+- `agents/developer.md`: implementation and verification.
+- `agents/qa.md`: independent review and acceptance evidence.
+- `agents/dba.md`: schema, data, and cache review.
+- `agents/designer.md`: optional substantive UI/UX design.
 
-## Base Agents
+## Maintenance
 
-| Agent | Purpose |
-|-------|---------|
-| `developer` | Implementation, testing |
-| `qa` | Independent review |
-| `coordinator` | Orchestration |
-| `designer` | UI/UX design (optional) |
+- Keep roles as plain Markdown without provider-specific frontmatter.
+- Keep generic rules here and stack/commands in project-local guidance.
+- Project `AGENTS.md` must explicitly tell Codex which shared files to read.
+- Role documents are context for the current session or an explicitly assigned
+  subagent; they do not configure models, tools, or permissions.
+- Use available runtime browser tools for UI verification. Keep project E2E
+  commands in project guidance rather than installing browser integrations here.
 
-## Usage
+## Verification
 
-### New Project
-
-1. Create `.opencode/agents/` in your project
-2. Create agent files with instructions referencing ai-team:
-   ```yaml
-   instructions:
-     - ../ai-team/principles.md
-     - ../ai-team/opencode/agents/developer.md
-   ```
-3. Add project-specific details (stack, commands, rules)
-
-### Inheritance
-
-```
-principles.md        → Caveman, model selection, self-maintenance
-base agents          → Common workflow, constraints
-project agents       → Stack, commands, project rules
-project instructions → Knowledge base (schema, api, etc.)
-```
-
-## What Goes Where
-
-| Content | Location |
-|---------|----------|
-| Caveman talk | principles.md |
-| Model selection | principles.md |
-| Self-maintenance | principles.md |
-| Common workflow | base agents |
-| Stack/commands | project agents |
-| Schema/API docs | project instructions |
-
-## Browser Automation
-
-Agents can control Chrome via Playwright MCP using existing login sessions.
-
-### Quick Start
-
-```bash
-# 1. Start Chrome with remote debugging
-~/Repos/ai-team/opencode/scripts/chrome-debug.sh
-
-# 2. Add to project opencode.json (or copy opencode/config/playwright.jsonc)
-{
-  "mcp": {
-    "servers": {
-      "playwright": {
-        "type": "local",
-        "command": ["npx", "-y", "@playwright/mcp", "--cdp-endpoint", "http://127.0.0.1:9222"]
-      }
-    }
-  }
-}
-```
-
-See `opencode/docs/browser-automation.md` for full documentation.
+For documentation changes, check relative paths, role references, the integrated
+Git diff, and whitespace. No application build is needed for prose-only edits.

@@ -1,64 +1,47 @@
 # AI Team Framework
 
-Karpathy-inspired coding principles + OpenCode agent templates.
+Karpathy-inspired coding principles and reusable Codex role guidance.
 
 ## Structure
 
-```
+```text
 ai-team/
-├── principles.md           # Core principles, caveman talk, model selection
-└── opencode/
-    └── agents/             # Base agent templates
-        ├── coordinator.md
-        ├── developer.md
-        ├── qa.md
-        └── designer.md
+├── AGENTS.md
+├── principles.md
+└── agents/
+    ├── coordinator.md
+    ├── developer.md
+    ├── qa.md
+    ├── dba.md
+    └── designer.md
 ```
 
-## Usage
+## Project setup
 
-### New Project Setup
+Keep this repository beside the consuming project. Put persistent project rules
+in the project's `AGENTS.md`, project role details in `.codex/agents/`, and
+on-demand knowledge in `.codex/instructions/`.
 
-1. Create `.opencode/agents/` in your project
-2. Create agent files referencing ai-team:
+Add explicit reading instructions to the project's `AGENTS.md`, for example:
 
-```yaml
-# your-project/.opencode/agents/developer.md
----
-description: Your project developer
-mode: all
-instructions:
-  - ../ai-team/principles.md
-  - ../ai-team/opencode/agents/developer.md
----
-
-# Developer — Your Project
-
-## Stack
-...
-
-## Commands
-...
+```markdown
+Before project work, read `../ai-team/principles.md`,
+`../ai-team/agents/coordinator.md`, and `.codex/agents/coordinator.md`.
+For implementation, also read `../ai-team/agents/developer.md` and
+`.codex/agents/developer.md`.
+Apply shared guidance first, followed by project-specific rules.
+If the sibling repository is missing, report the missing dependency.
 ```
 
-3. Add project-specific details (stack, commands, rules)
+`AGENTS.md` is the Codex entry point. The other Markdown files are explicitly
+read context; placing them in `agents/` does not install runtime agent types or
+select models. When delegation is available and permitted, include the relevant
+shared and project role paths in each assignment. Otherwise apply the roles
+sequentially and identify self-review honestly.
 
-## Four Principles
-
-1. **Think Before Coding** — Analyze, then implement
-2. **Simplicity First** — Existing conventions over new abstractions
-3. **Surgical Changes** — Touch only relevant files
-4. **Goal-Driven** — Observable evidence, not assumptions
-
-## Features
-
-- **Caveman Talk** — Brief responses, save tokens
-- **Model Selection** — Auto-switch between tiers (HIGH/MID/LOW)
-- **Self-Maintenance** — Update knowledge base when code changes
-
-See `principles.md` for details.
+See [principles.md](principles.md) for coding and delivery rules.
 
 ## References
 
+- [Codex workflow conventions](https://developers.openai.com/cookbook/examples/codex/iterating-development-workflows-with-codex)
 - [Karpathy Skills](https://github.com/multica-ai/andrej-karpathy-skills)
-- [OpenCode Docs](https://opencode.ai/v2/docs/)
